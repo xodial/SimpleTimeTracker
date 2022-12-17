@@ -1,0 +1,238 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+
+  --vh-100: 100vh;
+
+  --border-light: 1px solid #d3d3d3;
+  --space-xs: 2px;
+  --space-sm: 5px;
+  --space-md: 10px;
+  --time-label-size: 70px;
+
+  --color-font-normal: #333;
+  --color-font-light: #fcfcfc;
+
+  --color-clock-in: forestgreen;
+  --color-meal: darkgoldenrod;
+  --color-clock-out: firebrick;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--color-font-normal);
+}
+
+html,
+body {
+  background-color: #efefef;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: var(--vh-100);
+  overflow: hidden;
+  padding: var(--space-md);
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  height: 40px;
+}
+
+.nav--today {
+  margin-bottom: var(--space-sm);
+}
+
+.nav__title {
+  position: relative;
+}
+
+.nav--today .nav__title:after {
+  content: "Today";
+  box-sizing: border-box;
+  background-color: var(--color-clock-in);
+  color: var(--color-font-light);
+  position: absolute;
+  top: 100%;
+  font-weight: bold;
+  border: var(--border-light);
+  border-radius: 2px;
+  padding: var(--space-xs) var(--space-sm);
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: x-small;
+}
+
+.nav__action {
+  border: none;
+  background: none;
+  padding: var(--space-md);
+  font-size: large;
+}
+
+.nav__action[disabled] {
+  opacity: 0.3;
+}
+
+.day {
+  position: relative;
+  border: var(--border-light);
+  flex: 1 auto;
+  overflow: auto;
+  margin-top: var(--space-md);
+}
+
+.day__timeslot {
+  position: relative;
+  height: 50px;
+  border-top: var(--border-light);
+  border-bottom: none;
+}
+
+.day__timeslot:first-child {
+  border-top: none;
+}
+
+.day__timeslot:before {
+  content: attr(data-time);
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right: var(--border-light);
+  padding: var(--space-sm);
+  width: var(--time-label-size);
+  font-size: small;
+}
+
+.event {
+  --left-margin: calc(var(--time-label-size) + var(--space-md));
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: var(--left-margin);
+  width: calc(100% - var(--left-margin));
+  padding: var(--space-sm);
+}
+
+.event--clock-in {
+  background-color: var(--color-clock-in);
+  color: var(--color-font-light);
+}
+
+.event--meal {
+  background-color: var(--color-meal);
+}
+
+.event--clock-out {
+  background-color: var(--color-clock-out);
+  color: var(--color-font-light);
+}
+
+.event__action {
+  border: none;
+  background: none;
+  padding: var(--space-sm);
+  color: currentColor;
+}
+
+.controls {
+  display: flex;
+  height: 40px;
+  flex-direction: row;
+  flex: 0 0 auto;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.controls__button {
+  flex: 1;
+  border: var(--border-light);
+  border-radius: 8px;
+}
+
+.controls__button[disabled] {
+  opacity: 0.3;
+}
+
+.controls__button--clock-in {
+  background-color: var(--color-clock-in);
+  color: var(--color-font-light);
+}
+
+.controls__button--meal {
+  background-color: var(--color-meal);
+  color: var(--color-font-light);
+}
+
+.controls__button--clock-out {
+  background-color: var(--color-clock-out);
+  color: var(--color-font-light);
+}
+
+.location {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #efefef;
+  padding: var(--space-md);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--space-md);
+}
+
+.form__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-md);
+}
+
+.form__label {
+  font-size: medium;
+  line-height: medium;
+  font-weight: bolder;
+  margin: 0;
+}
+
+.form__field {
+  margin: 0;
+  height: 30px;
+  font-size: medium;
+  padding: 0 var(--space-sm);
+}
+
+.form__button {
+  border-radius: 8px;
+  height: 40px;
+  border: var(--border-light);
+  padding: var(--space-md);
+
+  background: #ddd;
+}
+
+.form__button--cta {
+  background: var(--color-clock-in);
+  color: var(--color-font-light);
+}
